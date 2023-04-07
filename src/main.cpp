@@ -173,8 +173,8 @@ bool has_suffix(const std::string &str, const std::string &suffix) {
 
 void print_version() {
 	std::cout << "lscc - Lorenzo's C compiler" << std::endl;
-	std::cout << "lscc build "BUILD_VERSION << std::endl;
-	std::cout << "Lexer build "LEXER_VERSION << std::endl;
+	std::cout << "lscc build " BUILD_VERSION << std::endl;
+	std::cout << "Lexer build " LEXER_VERSION << std::endl;
 }
 void print_help() {
 	std::cout << "lscc - Lorenzo's C compiler" << std::endl << std::endl;
