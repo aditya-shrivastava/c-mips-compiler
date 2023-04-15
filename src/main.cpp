@@ -6,6 +6,9 @@
 #include <cstdlib>
 #include <cstring>
 
+// include time to measure execution time.
+#include <time.h>
+
 #include "includes.hpp"
 
 #include "c_parser.tab.hpp"
@@ -21,6 +24,9 @@
 #define MODE_PARSE 3
 #define MODE_AST 4
 #define MODE_IR 5
+
+#define TICK(X) clock_t X = clock()
+#define TOCK(X) printf("time %s: %g sec. \n", (#X), (double)(clock()-(X))/CLOCKS_PER_SEC)
 
 /* lexer functions */
 void print_tokens();
@@ -44,6 +50,8 @@ void generate_mips();
 Node* ast_root;
 
 int main(int argc, char const *argv[]) {
+
+	TICK(TIME_A);
 	// parse command-line arguments
 	int mode = MODE_COMPILE;
 	std::string infile;
@@ -160,7 +168,9 @@ int main(int argc, char const *argv[]) {
 		default:
 			std::cerr << "Error: unknown mode of operation " << mode << std::endl;
 			return 1;
-	}
+	}	
+
+	TOCK(TIME_A);
 
 	return 0;
 }
