@@ -10,209 +10,120 @@
     .globl main
     .align 4
 main:
-    addiu   $sp, $sp, -128
-    sw      $fp, 124($sp)
-    sw      $31, 120($sp)
+    addiu   $sp, $sp, -56
+    sw      $fp, 52($sp)
+    sw      $31, 48($sp)
     move    $fp, $sp
-    sw      $4, 128($fp)
-    sw      $5, 132($fp)
-    sw      $6, 136($fp)
-    sw      $7, 140($fp)
-    addiu   $8, $fp, 8
-    sw      $8, 52($fp)
+    sw      $4, 56($fp)
+    sw      $5, 60($fp)
+    sw      $6, 64($fp)
+    sw      $7, 68($fp)
   fnc_main_code:
-    lw     $8, 52($fp)
+    li      $8, 1000
+    sw      $8, 12($fp)
     nop
-    move    $10, $8
-    sw      $10, 64($fp)
+    addiu   $8, $fp, 40
+    sw      $8, 8($fp)
     nop
-    li      $8, 1
-    sw      $8, 68($fp)
+    lw     $3, 8($fp)
     nop
-    lw     $3, 64($fp)
-    nop
-    lw     $8, 68($fp)
-    nop
-    move    $10, $8
-    sw      $10, 0($3)
-    nop
-    lw     $8, 64($fp)
-    nop
-    addiu   $10, $8, 4
-    li      $8, 2
-    sw      $8, 72($fp)
-    nop
-    lw     $3, 64($fp)
-    nop
-    lw     $8, 72($fp)
+    lw     $8, 12($fp)
     nop
     move    $10, $8
     sw      $10, 0($3)
     nop
-    lw     $8, 64($fp)
-    nop
-    addiu   $10, $8, 4
-    li      $8, 3
-    sw      $8, 76($fp)
-    nop
-    lw     $3, 64($fp)
-    nop
-    lw     $8, 76($fp)
+  switch1_eval:
+    lw     $8, 40($fp)
     nop
     move    $10, $8
-    sw      $10, 0($3)
+    li      $11, 10
+    bne     $10, $11, $L1
     nop
-    lw     $8, 64($fp)
+    j       switch1_case1
     nop
-    addiu   $10, $8, 4
-    li      $8, 4
-    sw      $8, 80($fp)
-    nop
-    lw     $3, 64($fp)
-    nop
-    lw     $8, 80($fp)
-    nop
-    move    $10, $8
-    sw      $10, 0($3)
-    nop
-    lw     $8, 64($fp)
-    nop
-    addiu   $10, $8, 4
-    li      $8, 5
-    sw      $8, 84($fp)
-    nop
-    lw     $3, 64($fp)
-    nop
-    lw     $8, 84($fp)
-    nop
-    move    $10, $8
-    sw      $10, 0($3)
-    nop
-    lw     $8, 64($fp)
-    nop
-    addiu   $10, $8, 4
-    move    $8, $0
-    sw      $8, 88($fp)
-    nop
-    addiu   $8, $fp, 112
-    sw      $8, 44($fp)
-    nop
-    lw     $3, 44($fp)
-    nop
-    lw     $8, 88($fp)
-    nop
-    move    $10, $8
-    sw      $10, 0($3)
-    nop
-    move    $8, $0
-    sw      $8, 92($fp)
-    nop
-    addiu   $8, $fp, 108
-    sw      $8, 36($fp)
-    nop
-    lw     $3, 36($fp)
-    nop
-    lw     $8, 92($fp)
-    nop
-    move    $10, $8
-    sw      $10, 0($3)
-    nop
-  for1_begin:
-  for1_condition:
-    li      $8, 5
-    sw      $8, 96($fp)
-    nop
-    li      $24, 1
-    lw     $8, 108($fp)
-    nop
-    lw     $9, 96($fp)
-    nop
-    move    $10, $8
-    move    $11, $9
-    slt     $25, $10, $11
-    bne     $25, $0, $L1
-    nop
-    li      $24, 0
    $L1:
-    sw      $24, 100($fp)
-    nop
-    lw     $8, 100($fp)
+    lw     $8, 40($fp)
     nop
     move    $10, $8
-    bne     $10, $0, $L2
+    li      $11, 100
+    bne     $10, $11, $L2
     nop
-    j       for1_end
+    j       switch1_case2
     nop
    $L2:
-  for1_body:
-    addiu   $8, $fp, 112
-    sw      $8, 48($fp)
+    lw     $8, 40($fp)
     nop
-    lw     $8, 52($fp)
+    move    $10, $8
+    li      $11, 1000
+    bne     $10, $11, $L3
     nop
-    lw     $10, 108($fp)
+    j       switch1_case3
     nop
-    li      $11, 4
-    mul     $10, $10, $11
-    addu    $14, $8, $10
-    sw      $14, 32($fp)
+   $L3:
+    j       switch1_default
     nop
-    lw      $2, 32($fp)
+  switch1_body:
+  switch1_case1:
+    li      $8, 10
+    sw      $8, 16($fp)
     nop
-    addiu   $3, $fp, 56
-    lw      $8, 0($2)
+    lw     $8, 16($fp)
     nop
-    sw      $8, 0($3)
-    lw     $8, 112($fp)
+    move    $2, $8
+    j       fnc_main_return
     nop
-    lw     $10, 56($fp)
+    j       switch1_end
     nop
-    move    $12, $8
-    move    $14, $10
-    addu    $8, $12, $14
+  switch1_case2:
+    li      $8, 100
+    sw      $8, 20($fp)
+    nop
+    lw     $8, 20($fp)
+    nop
+    move    $2, $8
+    j       fnc_main_return
+    nop
+    j       switch1_end
+    nop
+  switch1_case3:
+    li      $8, 1000
+    sw      $8, 24($fp)
+    nop
+    lw     $8, 24($fp)
+    nop
+    move    $2, $8
+    j       fnc_main_return
+    nop
+    j       switch1_end
+    nop
+  switch1_default:
+    li      $8, 1
     sw      $8, 28($fp)
-    nop
-    lw     $3, 48($fp)
     nop
     lw     $8, 28($fp)
     nop
-    move    $10, $8
-    sw      $10, 0($3)
+    subu    $10, $0, $8
+    sw      $10, 36($fp)
     nop
-  for1_afterthought:
-    lw     $8, 108($fp)
+    lw     $8, 36($fp)
     nop
-    move    $10, $8
-    sw      $10, 104($fp)
+    move    $2, $8
+    j       fnc_main_return
     nop
-    lw     $8, 108($fp)
+  switch1_end:
+    move    $8, $0
+    sw      $8, 32($fp)
     nop
-    addiu   $10, $8, 1
-    sw      $10, 60($fp)
-    nop
-    addiu   $8, $fp, 108
-    sw      $8, 40($fp)
-    nop
-    lw     $3, 40($fp)
-    nop
-    lw     $8, 60($fp)
-    nop
-    move    $10, $8
-    sw      $10, 0($3)
-    nop
-    j       for1_condition
-    nop
-  for1_end:
-    lw     $8, 112($fp)
+    lw     $8, 32($fp)
     nop
     move    $2, $8
     j       fnc_main_return
     nop
   fnc_main_return:
     move    $sp, $fp
-    lw      $31, 120($sp)
-    lw      $fp, 124($sp)
-    addiu   $sp, $sp, 128
+    lw      $31, 48($sp)
+    lw      $fp, 52($sp)
+    addiu   $sp, $sp, 56
     j       $31
     nop
 

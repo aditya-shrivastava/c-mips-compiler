@@ -45,7 +45,7 @@ frequency_dict, total_cycles = count_mips_frequency(mips_code)
 # Print out the frequency of each MIPS instruction
 for instruction, frequency in frequency_dict.items():
     print(instruction + ': ' + str(frequency))
-#print power consumed
+    
 print()
 print("Total Cycles: ", total_cycles)
 

@@ -1,13 +1,15 @@
-#include<stdio.h>
-
 int main() {
-    int a[5] = {1, 2, 3, 4, 5};
-    int sum = 0;
-    int i = 0;
-    for (i; i<5; i++) {
-        sum = sum + a[i];
+    int i = 1000;
+    
+    switch(i) {
+        case 10: return 10;
+            break;
+        case 100: return 100;
+            break;
+        case 1000: return 1000;
+            break;
+        default: return -1;
     }
 
-    printf("%d", sum);
-    return sum;
+    return 0;
 }
