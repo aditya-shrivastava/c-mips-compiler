@@ -1,4 +1,9 @@
 import json
+import os
+
+# Execute lscc command
+cmd = 'lscc src.c -o dest.s'
+os.system(cmd)
 
 # Define a function to read in the MIPS code from a file
 def read_mips_code():
@@ -8,8 +13,6 @@ def read_mips_code():
     return mips_code
 
 # Define a function to count the frequency of each MIPS instruction
-
-
 def count_mips_frequency(mips_code):
     # Load circuit data from JSON file
     with open('cycle.json', 'r') as f:
